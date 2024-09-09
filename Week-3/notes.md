@@ -18,17 +18,18 @@ In C, we can define custom data structures using the struct keyword. This allows
 
 Suppose we want to store information about people, including their name and phone number. We can define a person struct like this:
 
-c
+```c
 typedef struct {
 string name;
 string number;
 } person;
+```
 
 ### Creating an Array of person Structs
 
 Once the structure is defined, we can create an array of person structs to store multiple people's information. For example:
 
-c
+```c
 person people[3];
 
 people[0].name = "David";
@@ -39,6 +40,7 @@ people[1].number = "+1-617-495-1001";
 
 people[2].name = "John";
 people[2].number = "+1-949-468-2750";
+```
 
 Here, we are storing information for three people in an array of person structs.
 
@@ -71,7 +73,7 @@ This week, we also begin working with common algorithms such as **searching** an
 
 The **linear search** algorithm checks each element in an array one by one until the target element is found or the entire array is searched.
 
-c
+```c
 int linear_search(int arr[], int n, int target)
 {
 for (int i = 0; i < n; i++)
@@ -83,12 +85,13 @@ return i; // Return the index where the target is found
 }
 return -1; // Return -1 if the target is not found
 }
+```
 
 ### Bubble Sort
 
 **Bubble sort** is a simple sorting algorithm that repeatedly steps through the array, compares adjacent elements, and swaps them if they are in the wrong order.
 
-c
+```c
 void bubble_sort(int arr[], int n)
 {
 
@@ -107,6 +110,7 @@ void bubble_sort(int arr[], int n)
     }
 
 }
+```
 
 ### Importance of Algorithmic Efficiency
 
