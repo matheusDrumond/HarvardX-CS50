@@ -8,19 +8,19 @@ Most of the code here is designed to run in [CS50's browser version of VSCode](h
 
 ## Week 0 - Introduction to Computer Science
 
-[View Notes](week-0/notes.md)
+[View Notes](Week-0/notes.md)
 
 ## Week 1 - C Programming
 
-[View Notes](week-1/notes.md)
+[View Notes](Week-1/notes.md)
 
 ## Week 2 - Arrays and Compilation
 
-[View Notes](week-2/notes.md)
+[View Notes](Week-2/notes.md)
 
 ## Week 3 - Algorithms and Data Structures
 
-[View Notes](week-3/notes.md)
+[View Notes](Week-3/notes.md)
 
 ---
 
