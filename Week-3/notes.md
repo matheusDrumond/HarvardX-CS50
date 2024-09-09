@@ -1,126 +1,100 @@
-# Week 3 - Algorithms and Data Structures
+# Week 2 - Arrays and Compilation
 
-## Introduction to Algorithms
+## Clang
 
-An **algorithm** is a sequence of steps or instructions designed to solve a problem. In programming, algorithms can manipulate data, perform calculations, and guide decision-making processes. Common types of algorithms include searching, sorting, and traversal methods.
+To compile our C files, we typically use the `make` command, but it's important to know that under the hood, `make` runs a compiler called Clang. Here's an example:
 
-### Characteristics of Algorithms
-
--   **Correctness**: An algorithm must correctly solve the problem it is designed for.
--   **Efficiency**: The algorithm should complete its task in a reasonable amount of time.
--   **Clarity**: A clear algorithm is easy to understand and implement.
-
-## Custom Data Structures in C
-
-In C, we can define custom data structures using the `struct` keyword. This allows us to group variables of different types under one name.
-
-### Example: Defining a Custom Data Structure
-
-Suppose we want to store information about people, including their name and phone number. We can define a `person` struct like this:
-
-```c
-typedef struct {
-    string name;
-    string number;
-} person;
+```bash
+make hello  # Compiles hello.c and outputs an executable named hello
 ```
 
-### Creating an Array of `person` Structs
+However, you can also use Clang directly:
 
-Once the structure is defined, we can create an array of `person` structs to store multiple people's information. For example:
-
-```c
-person people[3];
-
-people[0].name = "David";
-people[0].number = "+1-617-495-1000";
-
-people[1].name = "Carter";
-people[1].number = "+1-617-495-1001";
-
-people[2].name = "John";
-people[2].number = "+1-949-468-2750";
+```bash
+clang hello.c -o hello  # Compiles hello.c and outputs an executable named hello
+./hello  # Runs the executable program
 ```
 
-Here, we are storing information for three people in an array of `person` structs.
+In this case, `-o hello` specifies that the output file should be named `hello`. By default, without the `-o` flag, Clang generates an output file called `a.out`, which can be executed by typing `./a.out`.
 
-### Accessing Data from Custom Structures
+## Compilation Process
 
-To access individual fields within a struct, we use the dot (`.`) operator. For example:
+When compiling C code, several steps are involved to turn your human-readable code into machine-executable instructions. The compilation process consists of four stages:
 
-```c
-printf("Name: %s, Phone: %s", people[0].name, people[0].number);
-```
+1. **Preprocessing:** The preprocessor handles directives like `#include` and macros. It essentially prepares your code by expanding these directives before the actual compilation starts.
+2. **Compiling:** During this stage, the code written in C is transformed into assembly code, a low-level programming language that is specific to the architecture of your machine.
+3. **Assembling:** The assembler translates the assembly code produced in the previous step into binary object code (machine code), which the CPU can understand.
+4. **Linking:** Finally, the linker combines all object files, including external libraries, into a single executable file.
 
-This will print the name and phone number of the first person in the `people` array.
+### Why This Process Matters
 
-## Arrays and Memory Management
+Understanding the steps involved in compilation helps when debugging errors or optimizing your program. For instance, you may encounter errors during the linking phase if the necessary libraries aren’t properly included in your project.
 
-In Week 2, we learned about arrays in C. In Week 3, we'll expand on this by focusing on how arrays are used in conjunction with custom data structures.
+## Arrays in C
 
-Arrays in C are stored in contiguous blocks of memory, and the size of the array must be declared when the array is created. When we store a custom struct in an array, each element in the array occupies the amount of memory needed for the variables defined in the struct.
+An **array** in C is a collection of variables of the same type stored at contiguous memory locations. You can think of it as a list of items (e.g., integers or characters).
 
-### Example: Memory Considerations
+### Declaring an Array
 
-If each `person` struct in the previous example uses 40 bytes of memory (due to the combined size of the `name` and `number` strings), then an array of 3 `person` structs would take 120 bytes in total.
-
-Managing memory efficiently is crucial in C, especially when dealing with larger arrays or dynamic memory allocation, which will be covered in more advanced topics.
-
-## Common Algorithms
-
-This week, we also begin working with common algorithms such as **searching** and **sorting**:
-
-### Linear Search
-
-The **linear search** algorithm checks each element in an array one by one until the target element is found or the entire array is searched.
+To declare an array of integers with 5 elements:
 
 ```c
-int linear_search(int arr[], int n, int target)
-{
-    for (int i = 0; i < n; i++)
-    {
-        if (arr[i] == target)
-        {
-            return i;  // Return the index where the target is found
-        }
-    }
-    return -1;  // Return -1 if the target is not found
-}
+int numbers[5]; // Declares an array with 5 integer elements
 ```
 
-### Bubble Sort
-
-**Bubble sort** is a simple sorting algorithm that repeatedly steps through the array, compares adjacent elements, and swaps them if they are in the wrong order.
+To initialize it at the same time:
 
 ```c
-void bubble_sort(int arr[], int n)
-{
-
-    for (int i = 0; i < n - 1; i++)
-    {
-        for (int j = 0; j < n - i - 1; j++)
-        {
-            if (arr[j] > arr[j + 1])
-            {
-                // Swap arr[j] and arr[j + 1]
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
-}
+int numbers[5] = {1, 2, 3, 4, 5}; // Assigns values to each element
 ```
 
-### Importance of Algorithmic Efficiency
+You can access or modify individual elements using their index (starting from 0):
 
-The efficiency of an algorithm is often measured in terms of **time complexity** and **space complexity**:
+```c
+numbers[0] = 10; // Changes the first element to 10
+```
 
--   **Time complexity** refers to how the running time of an algorithm increases as the input size grows.
--   **Space complexity** refers to how much additional memory the algorithm uses based on the input size.
+### Why Arrays Are Useful
 
-Choosing the right algorithm for the task at hand can dramatically affect the performance of your program, especially when working with large datasets.
+Arrays allow you to store and manipulate large amounts of data efficiently, such as keeping track of multiple user inputs or processing a large set of numbers.
 
----
+## Strings in C
 
-By the end of Week 3, you'll have a foundational understanding of how to define and use custom data structures in C and how basic algorithms such as searching and sorting work. You'll also have learned the importance of efficiency when working with algorithms.
+In C, **strings** are arrays of characters terminated by a null character (`\0`). Strings are not a separate data type in C—they are just character arrays.
+
+### Declaring and Initializing Strings
+
+You can declare and initialize a string like this:
+
+```c
+char name[] = "Alice"; // A string is an array of characters
+```
+
+Behind the scenes, this string is stored as:
+
+```
+'A' 'l' 'i' 'c' 'e' '\0'
+```
+
+Each character occupies one byte of memory, and the `\0` character marks the end of the string. You can also create a string by specifying each character individually:
+
+```c
+char name[6] = {'A', 'l', 'i', 'c', 'e', '\0'};
+```
+
+## Using External Libraries (e.g., `-lcs50`)
+
+To use external libraries like `cs50` in your C programs, you need to link them during compilation using the `-l` flag.
+
+### Example:
+
+```bash
+clang hello.c -o hello -lcs50
+```
+
+In this command:
+
+-   `-lcs50` tells the compiler to link the `cs50` library.
+-   This allows you to use functions provided by the `cs50` library, such as `get_string()`.
+
+This linking is required for any external libraries that are not part of the standard C library. By using `make`, this process is automated, but understanding how it works under the hood helps when working with different libraries.
