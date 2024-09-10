@@ -48,8 +48,9 @@ Here, we are storing information for three people in an array of person structs.
 
 To access individual fields within a struct, we use the dot (.) operator. For example:
 
-c
+```c
 printf("Name: %s, Phone: %s", people[0].name, people[0].number);
+```
 
 This will print the name and phone number of the first person in the people array.
 
