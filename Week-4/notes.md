@@ -105,3 +105,97 @@ while (*str != '\0')  // Loop until the null terminator
     str++;  // Move the pointer to the next character
 }
 ```
+
+## Dynamic Memory Allocation with `malloc`
+
+In C, dynamic memory allocation allows you to allocate memory at runtime, rather than at compile-time. This is useful when the size of your data structure is not known until the program is running. The `malloc` function (memory allocation) is used to allocate a block of memory of a specified size, and it returns a pointer to the beginning of the block.
+
+### Syntax:
+
+```c
+void *malloc(size_t size);
+```
+
+-   `size`: The number of bytes to allocate.
+-   The function returns a pointer to the allocated memory. If the allocation fails, it returns `NULL`.
+
+### Example:
+
+```c
+int *arr = malloc(10 * sizeof(int)); // Allocate memory for an array of 10 integers
+
+if (arr == NULL)
+{
+    // Handle memory allocation failure
+    printf("Memory allocation failed\n");
+}
+```
+
+In this example, `malloc` allocates memory for 10 integers, and the pointer `arr` points to the first element of the allocated memory.
+
+---
+
+## Freeing Allocated Memory with `free`
+
+Whenever you allocate memory dynamically using `malloc` (or related functions like `calloc` or `realloc`), it is important to release that memory once you're done using it. This is done using the `free` function, which prevents memory leaks and ensures efficient memory management.
+
+### Syntax:
+
+```c
+void free(void *ptr);
+```
+
+-   `ptr`: A pointer to the memory block to be freed.
+
+### Example:
+
+```c
+free(arr); // Free the memory allocated to arr
+```
+
+Once `free` is called, the memory pointed to by `arr` is returned to the system, and `arr` becomes a dangling pointer (it no longer points to valid memory).
+
+---
+
+## Debugging Memory Issues with `valgrind`
+
+`valgrind` is a powerful tool used for detecting memory-related issues such as memory leaks, invalid memory access, and improper use of `malloc` and `free`. It is often used to ensure that memory is being properly managed in C programs.
+
+### How to Use `valgrind`:
+
+To run `valgrind` on your program, use the following command:
+
+```bash
+valgrind ./your_program
+```
+
+`valgrind` will output information about memory errors, memory usage, and any potential leaks. It is invaluable for catching bugs related to incorrect memory management.
+
+---
+
+## Passing Pointers as Parameters in Functions
+
+In C, passing pointers as function parameters allows functions to modify the variables in the caller’s scope. This is useful when you want a function to modify an argument’s value or when you want to avoid copying large amounts of data by passing a reference to it instead of the data itself.
+
+### Example:
+
+```c
+void modify_value(int *p)
+{
+    *p = 20; // Dereference the pointer and modify the value it points to
+}
+
+int main()
+{
+    int num = 10;
+    modify_value(&num); // Pass the address of num
+    printf("%d\n", num); // Output will be 20
+    return 0;
+}
+```
+
+In this example, the `modify_value` function takes a pointer to an integer as a parameter. When the function modifies `*p`, it changes the value of `num` in the calling function. This is an efficient way to allow a function to modify variables outside its own scope.
+
+---
+
+By understanding these concepts, you will have a deeper knowledge of memory management in C and how to use pointers effectively in your programs.
