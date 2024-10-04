@@ -1,4 +1,4 @@
-# Week 3 - Algorithms and Data Structures
+# Week 3 - Algorithms
 
 ## Introduction to Algorithms
 

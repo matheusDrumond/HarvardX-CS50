@@ -18,13 +18,17 @@ Most of the code here is designed to run in [CS50's browser version of VSCode](h
 
 [View Notes](Week-2/notes.md)
 
-## Week 3 - Algorithms and Data Structures
+## Week 3 - Algorithms
 
 [View Notes](Week-3/notes.md)
 
 ## Week 4 - Memory
 
 [View Notes](Week-4/notes.md)
+
+## Week 5 - Data Structures
+
+[View Notes](Week-5/notes.md)
 
 ---
 
